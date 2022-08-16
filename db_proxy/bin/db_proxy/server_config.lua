@@ -1,5 +1,3 @@
-Include("util.lua");
-
 base_config = 
 {
 	nTestValue = 1;
