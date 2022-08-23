@@ -11,6 +11,10 @@ struct SERVER_CONFIG
 	int32_t nDBPingInterval;
 	int32_t nDBPingTimeout;
 	int32_t nDBReConnectInterval;
+
+	char	szRedisHost[64];
+	int32_t	nRedisPort;
+	char	szRedisPassword[64];
 };
 
 extern SERVER_CONFIG g_ServerConfig;

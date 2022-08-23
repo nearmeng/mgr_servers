@@ -1,6 +1,6 @@
 /*
 ** Lua binding: server_config
-** Generated automatically by toluapp-1.0.94 on Thu Jul 21 16:03:09 2022.
+** Generated automatically by toluapp-1.0.94 on Tue Aug 23 14:11:59 2022.
 */
 
 #include "stdafx.h"
@@ -202,6 +202,96 @@ static int tolua_set_SERVER_CONFIG_nDBReConnectInterval(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* get function: szRedisHost of class  SERVER_CONFIG */
+#ifndef TOLUA_DISABLE_tolua_get_SERVER_CONFIG_szRedisHost
+static int tolua_get_SERVER_CONFIG_szRedisHost(lua_State* tolua_S)
+{
+  SERVER_CONFIG* self = (SERVER_CONFIG*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+ if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'szRedisHost'",NULL);
+#endif
+ tolua_pushstring(tolua_S,(const char*)self->szRedisHost);
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* set function: szRedisHost of class  SERVER_CONFIG */
+#ifndef TOLUA_DISABLE_tolua_set_SERVER_CONFIG_szRedisHost
+static int tolua_set_SERVER_CONFIG_szRedisHost(lua_State* tolua_S)
+{
+  SERVER_CONFIG* self = (SERVER_CONFIG*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'szRedisHost'",NULL);
+ if (!tolua_isstring(tolua_S,2,0,&tolua_err))
+ tolua_error(tolua_S,"#vinvalid type in variable assignment.",&tolua_err);
+#endif
+ strxcpy((char*)
+self->szRedisHost,(const char*)tolua_tostring(tolua_S,2,0),64-1);
+ return 0;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: nRedisPort of class  SERVER_CONFIG */
+#ifndef TOLUA_DISABLE_tolua_get_SERVER_CONFIG_nRedisPort
+static int tolua_get_SERVER_CONFIG_nRedisPort(lua_State* tolua_S)
+{
+  SERVER_CONFIG* self = (SERVER_CONFIG*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+ if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'nRedisPort'",NULL);
+#endif
+ tolua_pushinteger(tolua_S,(lua_Integer)self->nRedisPort);
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* set function: nRedisPort of class  SERVER_CONFIG */
+#ifndef TOLUA_DISABLE_tolua_set_SERVER_CONFIG_nRedisPort
+static int tolua_set_SERVER_CONFIG_nRedisPort(lua_State* tolua_S)
+{
+  SERVER_CONFIG* self = (SERVER_CONFIG*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'nRedisPort'",NULL);
+ if (!tolua_isinteger(tolua_S,2,0,&tolua_err))
+ tolua_error(tolua_S,"#vinvalid type in variable assignment.",&tolua_err);
+#endif
+  self->nRedisPort = ((int32_t)  tolua_tointeger(tolua_S,2,0))
+;
+ return 0;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* get function: szRedisPassword of class  SERVER_CONFIG */
+#ifndef TOLUA_DISABLE_tolua_get_SERVER_CONFIG_szRedisPassword
+static int tolua_get_SERVER_CONFIG_szRedisPassword(lua_State* tolua_S)
+{
+  SERVER_CONFIG* self = (SERVER_CONFIG*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+ if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'szRedisPassword'",NULL);
+#endif
+ tolua_pushstring(tolua_S,(const char*)self->szRedisPassword);
+ return 1;
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* set function: szRedisPassword of class  SERVER_CONFIG */
+#ifndef TOLUA_DISABLE_tolua_set_SERVER_CONFIG_szRedisPassword
+static int tolua_set_SERVER_CONFIG_szRedisPassword(lua_State* tolua_S)
+{
+  SERVER_CONFIG* self = (SERVER_CONFIG*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (!self) tolua_error(tolua_S,"invalid 'self' in accessing variable 'szRedisPassword'",NULL);
+ if (!tolua_isstring(tolua_S,2,0,&tolua_err))
+ tolua_error(tolua_S,"#vinvalid type in variable assignment.",&tolua_err);
+#endif
+ strxcpy((char*)
+self->szRedisPassword,(const char*)tolua_tostring(tolua_S,2,0),64-1);
+ return 0;
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* get function: g_ServerConfig */
 #ifndef TOLUA_DISABLE_tolua_get_g_ServerConfig
 static int tolua_get_g_ServerConfig(lua_State* tolua_S)
@@ -241,6 +331,9 @@ TOLUA_API int tolua_server_config_open (lua_State* tolua_S)
   tolua_variable(tolua_S,"nDBPingInterval",tolua_get_SERVER_CONFIG_nDBPingInterval,tolua_set_SERVER_CONFIG_nDBPingInterval);
   tolua_variable(tolua_S,"nDBPingTimeout",tolua_get_SERVER_CONFIG_nDBPingTimeout,tolua_set_SERVER_CONFIG_nDBPingTimeout);
   tolua_variable(tolua_S,"nDBReConnectInterval",tolua_get_SERVER_CONFIG_nDBReConnectInterval,tolua_set_SERVER_CONFIG_nDBReConnectInterval);
+  tolua_variable(tolua_S,"szRedisHost",tolua_get_SERVER_CONFIG_szRedisHost,tolua_set_SERVER_CONFIG_szRedisHost);
+  tolua_variable(tolua_S,"nRedisPort",tolua_get_SERVER_CONFIG_nRedisPort,tolua_set_SERVER_CONFIG_nRedisPort);
+  tolua_variable(tolua_S,"szRedisPassword",tolua_get_SERVER_CONFIG_szRedisPassword,tolua_set_SERVER_CONFIG_szRedisPassword);
  tolua_endmodule(tolua_S);
  tolua_variable(tolua_S,"g_ServerConfig",tolua_get_g_ServerConfig,tolua_set_g_ServerConfig);
  tolua_endmodule(tolua_S);

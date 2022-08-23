@@ -3,6 +3,7 @@
 
 #include "redis_mgr.h"
 #include "app/server_app.h"
+#include "config/server_config.h"
 
 struct TEST_USER_DATA
 {
@@ -55,27 +56,27 @@ MG_REGISTER_MODULE(CRedisModule);
 BOOL CRedisModule::init(BOOL bResume)
 {
     int32_t nRetCode = 0;
-    pTestRedisCli = NULL;
+    pRedisCli = NULL;
     TEST_USER_DATA UserData;
 
     nRetCode = CRedisCliMgr::instance().init(bResume);
     LOG_PROCESS_ERROR(nRetCode);
     
-    pTestRedisCli = CRedisCliMgr::instance().new_client("test", "9.134.128.218", 50000, "redis@max");
-    LOG_PROCESS_ERROR(pTestRedisCli);
+    pRedisCli = CRedisCliMgr::instance().new_client("default", g_ServerConfig.szRedisHost, g_ServerConfig.nRedisPort, g_ServerConfig.szRedisPassword);
+    LOG_PROCESS_ERROR(pRedisCli);
     
-    pTestRedisCli->reg_handler(1, test_callback);
-
-    nRetCode = pTestRedisCli->sync_connect();
+    nRetCode = pRedisCli->sync_connect();
     LOG_PROCESS_ERROR(nRetCode);
+    
+	//pRedisCli->reg_handler(1, test_callback);
 
-    UserData.nTestValue = 100;
-    strxcpy(UserData.szString, "hello world", sizeof(UserData.szString));
+    //UserData.nTestValue = 100;
+    //strxcpy(UserData.szString, "hello world", sizeof(UserData.szString));
     //nRetCode = pTestRedisCli->command(1, (const char*)&UserData, sizeof(UserData), "set %s %d", "test_key", 10);
     //LOG_PROCESS_ERROR(nRetCode);
 
-    nRetCode = pTestRedisCli->eval(0, 1, (const char*)&UserData, sizeof(UserData), "1 %d %d %d", "return {KEYS[1], ARGV[1], ARGV[2]}", 10, 1, 2);
-    LOG_PROCESS_ERROR(nRetCode);
+    //nRetCode = pTestRedisCli->eval(0, 1, (const char*)&UserData, sizeof(UserData), "1 %d %d %d", "return {KEYS[1], ARGV[1], ARGV[2]}", 10, 1, 2);
+    //LOG_PROCESS_ERROR(nRetCode);
 
     nRetCode = _init_msg_handler();
     LOG_PROCESS_ERROR(nRetCode);
@@ -89,10 +90,10 @@ BOOL CRedisModule::uninit(void)
 {
     int32_t nRetCode = 0;
 
-    nRetCode = pTestRedisCli->sync_disconnect();
+    nRetCode = pRedisCli->sync_disconnect();
     LOG_CHECK_ERROR(nRetCode);
 
-    nRetCode = CRedisCliMgr::instance().del_client(pTestRedisCli);
+    nRetCode = CRedisCliMgr::instance().del_client(pRedisCli);
     LOG_CHECK_ERROR(nRetCode);
 
     return TRUE;

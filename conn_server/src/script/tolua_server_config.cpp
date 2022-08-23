@@ -1,6 +1,6 @@
 /*
 ** Lua binding: server_config
-** Generated automatically by toluapp-1.0.94 on Thu Jul 21 16:03:09 2022.
+** Generated automatically by toluapp-1.0.94 on Tue Aug 23 14:11:59 2022.
 */
 
 #include "stdafx.h"

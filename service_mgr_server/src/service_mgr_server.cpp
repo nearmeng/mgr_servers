@@ -11,6 +11,8 @@
 #include "config/server_config.h"
 #include "time/time_mgr.h"
 
+extern int tolua_server_config_open(lua_State* tolua_S);
+
 BOOL server_init(TAPPCTX* pCtx, BOOL bResume)
 {
 	int32_t nRetCode = 0;
@@ -105,8 +107,11 @@ int main(int argc, char* argv[])
     config.pAppReload = server_reload;
     config.pAppStop = server_stop;
 
+	config.m_pConfigData = &g_ServerConfig;
+	config.m_pcszConfigClassName = "SERVER_CONFIG";
+	config.vToluaFunc.push_back(tolua_server_config_open);
     pServer->set_config(config);
-    pServer->set_user_msg_handler(0, CSMSMessageHandler::msg_handler);
+    pServer->set_user_msg_handler(ALL_SERVER_TYPE, CSMSMessageHandler::msg_handler);
 
     nRetCode = pServer->init("service_mgr_server", argc, argv);
     LOG_PROCESS_ERROR(nRetCode);
